@@ -8,7 +8,7 @@
 				initial-scale=1.0">
     <title>@yield('title','Customer Auth')</title>
     <link href="{{asset('bootstrap/css/style.css')}}" rel="stylesheet">
-<!-- Bootstrap CSS -->
+    <!-- Bootstrap CSS -->
     <link href="{{asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href=
     "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -25,18 +25,33 @@
         <button class="btn btn-lg btn-primary">{{auth()->user()->name}}</button>
         <hr>
         <ul class="mynav nav nav-pills flex-column mb-auto">
-            <li class="nav-item mb-1">
-                <a href="{{route('prescription')}}">
-                    <i class="fa-regular fa-user"></i>
-                    Add Prescription
-                </a>
-            </li>
-            <li class="nav-item mb-1">
-                <a href="{{route('getAllPrescriptions')}}">
-                    <i class="fa-regular fa-bookmark"></i>
-                    View Quotations
-                </a>
-            </li>
+            @if(auth()->user()->type === 1)
+                <li class="nav-item mb-1">
+                    <a href="{{route('prescription')}}">
+                        <i class="fa-regular fa-user"></i>
+                        Add Prescription
+                    </a>
+                </li>
+                <li class="nav-item mb-1">
+                    <a href="#">
+                        <i class="fa-regular fa-bookmark"></i>
+                        View Quotations
+                    </a>
+                </li>
+            @else
+                <li class="nav-item mb-1">
+                    <a href="{{route('getAllPrescriptions')}}">
+                        <i class="fa-regular fa-user"></i>
+                        Pres. Summary
+                    </a>
+                </li>
+                <li class="nav-item mb-1">
+                    <a href="#">
+                        <i class="fa-regular fa-bookmark"></i>
+                        Add Quotation
+                    </a>
+                </li>
+            @endif
             <li class="nav-item mb-1">
                 <a href="{{route('logout')}}">
                     <i class="fa-regular fa-bookmark"></i>
@@ -49,16 +64,16 @@
 
     <div class="bg-light flex-fill">
         {{--<div class="p-2 d-md-none d-flex text-white bg-success">--}}
-            {{--<a href="#" class="text-white" data-bs-toggle="offcanvas" data-bs-target="#bdSidebar">--}}
-                {{--<i class="fa-solid fa-bars"></i>--}}
-            {{--</a>--}}
-            {{--<span class="ms-3">GFG Portal</span>--}}
+        {{--<a href="#" class="text-white" data-bs-toggle="offcanvas" data-bs-target="#bdSidebar">--}}
+        {{--<i class="fa-solid fa-bars"></i>--}}
+        {{--</a>--}}
+        {{--<span class="ms-3">GFG Portal</span>--}}
         {{--</div>--}}
         <div class="p-4">
             {{--<div class="row">--}}
-                {{--<div class="col">--}}
-                    @yield('dashboardContent')
-                {{--</div>--}}
+            {{--<div class="col">--}}
+            @yield('dashboardContent')
+            {{--</div>--}}
             {{--</div>--}}
         </div>
     </div>

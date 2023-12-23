@@ -9,10 +9,10 @@
                     <th scope="col">Customer</th>
                     <th scope="col">Contact No</th>
                     <th scope="col">Note</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Date</th>
+                    <th scope="col">Delivery Address</th>
+                    <th scope="col">Delivery Date</th>
                     <th scope="col">is Quotation create</th>
-                    <th scope="col">Customer Status</th>
+                    <th scope="col">Status</th>
                 </tr>
                 </thead>
                 <tbody>
