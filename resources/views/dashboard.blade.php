@@ -25,7 +25,7 @@
         <button class="btn btn-lg btn-primary">{{auth()->user()->name}}</button>
         <hr>
         <ul class="mynav nav nav-pills flex-column mb-auto">
-            @if(auth()->user()->type === 1)
+            @if(auth()->user()->type == 1)
                 <li class="nav-item mb-1">
                     <a href="{{route('prescription')}}">
                         <i class="fa-regular fa-user"></i>
@@ -63,18 +63,8 @@
     </div>
 
     <div class="bg-light flex-fill">
-        {{--<div class="p-2 d-md-none d-flex text-white bg-success">--}}
-        {{--<a href="#" class="text-white" data-bs-toggle="offcanvas" data-bs-target="#bdSidebar">--}}
-        {{--<i class="fa-solid fa-bars"></i>--}}
-        {{--</a>--}}
-        {{--<span class="ms-3">GFG Portal</span>--}}
-        {{--</div>--}}
         <div class="p-4">
-            {{--<div class="row">--}}
-            {{--<div class="col">--}}
             @yield('dashboardContent')
-            {{--</div>--}}
-            {{--</div>--}}
         </div>
     </div>
 </div>
