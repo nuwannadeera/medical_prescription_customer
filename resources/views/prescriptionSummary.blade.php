@@ -18,27 +18,30 @@
                 <tbody>
                 @foreach($customerUsers as $data)
                     <tr>
-                        <td scope="row">{{$data->name}}</td>
-                        <td>{{$data->contactno}}</td>
-                        <td>{{$data->prescription->note}}</td>
-                        <td>{{$data->prescription->delivery_address}}</td>
-                        <td>{{$data->prescription->delivery_date}}</td>
-                        <td>
-                            @if($data->prescription->is_quotation_create === 0)
-                                <a href="{{route('viewQuotation')}}" class="btn btn-success btn-sm">Create</a>
-                            @else
-                                <span class="badge badge-pill badge-dark">Already Created</span>
-                            @endif
-                        </td>
-                        <td>
-                            @if($data->prescription->is_quotation_create === 0)
-                                <span class="badge badge-pill badge-dark">Quotation Not Created</span>
-                            @elseif($data->prescription->is_quotation_create === 1)
-                                <span class="badge badge-pill badge-success">Accepted</span>
-                            @else
-                                <span class="badge badge-pill badge-danger">Rejected</span>
-                            @endif
-                        </td>
+                        <form action="{{route('addQuotation',$data->prescription->id)}}" method="POST">
+                            @csrf
+                            <td scope="row">{{$data->name}}</td>
+                            <td>{{$data->contactno}}</td>
+                            <td>{{$data->prescription->note}}</td>
+                            <td>{{$data->prescription->delivery_address}}</td>
+                            <td>{{$data->prescription->delivery_date}}</td>
+                            <td>
+                                @if($data->prescription->is_quotation_create === 0)
+                                    <button type="submit" class="btn btn-success btn-sm">Create</button>
+                                @else
+                                    <span class="badge badge-pill badge-dark">Already Created</span>
+                                @endif
+                            </td>
+                            <td>
+                                @if($data->prescription->is_quotation_create === 0)
+                                    <span class="badge badge-pill badge-dark">Quotation Not Created</span>
+                                @elseif($data->prescription->is_quotation_create === 1)
+                                    <span class="badge badge-pill badge-success">Accepted</span>
+                                @else
+                                    <span class="badge badge-pill badge-danger">Rejected</span>
+                                @endif
+                            </td>
+                        </form>
                     </tr>
                 @endforeach
                 </tbody>

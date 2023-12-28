@@ -20,7 +20,7 @@ class CreatePrescriptionsTable extends Migration
             $table->string('delivery_date');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('is_quotation_create');
+            $table->integer('is_quotation_create')->default(0);
             $table->timestamps();
         });
     }

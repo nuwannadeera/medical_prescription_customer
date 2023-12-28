@@ -19,6 +19,7 @@ class CreateQuotationsTable extends Migration
             $table->string('quotation_create_date');
             $table->integer('is_send_quotation')->default(0);
             $table->integer('is_accept_quotation')->default(0);
+            $table->timestamps();
         });
     }
 

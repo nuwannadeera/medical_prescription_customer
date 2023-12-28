@@ -45,12 +45,12 @@
                         Pres. Summary
                     </a>
                 </li>
-                <li class="nav-item mb-1">
-                    <a href="{{route('viewQuotation')}}">
-                        <i class="fa-regular fa-bookmark"></i>
-                        Add Quotation
-                    </a>
-                </li>
+                {{--<li class="nav-item mb-1">--}}
+                    {{--<a href="{{route('viewQuotation')}}">--}}
+                        {{--<i class="fa-regular fa-bookmark"></i>--}}
+                        {{--Add Quotation--}}
+                    {{--</a>--}}
+                {{--</li>--}}
             @endif
             <li class="nav-item mb-1">
                 <a href="{{route('logout')}}">
