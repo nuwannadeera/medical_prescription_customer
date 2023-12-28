@@ -5,8 +5,7 @@ namespace App;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
-{
+class User extends Authenticatable {
     use Notifiable;
 
     /**
@@ -38,8 +37,7 @@ class User extends Authenticatable
     /**
      * Get the prescription record associated with the user.
      */
-    public function prescription()
-    {
-        return $this->hasOne('App\Prescription','user_id','id');
+    public function prescription() {
+        return $this->hasOne('App\Prescription', 'user_id', 'id');
     }
 }
