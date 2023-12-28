@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthManagerController;
 use App\Http\Controllers\AddPrescriptionController;
 use App\Http\Controllers\PrescriptionSummaryController;
+use App\Http\Controllers\AddQuotationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,13 +43,22 @@ Route::group(['middleware' => 'auth'], function () {
 
 //--------------------------------------add prescription routes
 
-Route::get('/prescription', [AddPrescriptionController::class, 'prescription'])->name('prescription');
+Route::get('/prescription', [AddPrescriptionController::class, 'prescription'])
+    ->name('prescription');
 
-Route::post('/add_prescription', [AddPrescriptionController::class, 'savePrescription'])->name('savePrescription');
+Route::post('/add_prescription', [AddPrescriptionController::class, 'savePrescription'])
+    ->name('savePrescription');
 
 
 //--------------------------------------prescription summary routes
-Route::get('/prescriptionSummary', [PrescriptionSummaryController::class, 'viewPrescriptionSummary'])->name('viewPrescriptionSummary');
+Route::get('/prescriptionSummary', [PrescriptionSummaryController::class, 'viewPrescriptionSummary'])
+    ->name('viewPrescriptionSummary');
 
 Route::get('/prescriptionSummary',
-    [PrescriptionSummaryController::class, 'getAllPrescriptions'])->name('getAllPrescriptions');
+    [PrescriptionSummaryController::class, 'getAllPrescriptions'])
+    ->name('getAllPrescriptions');
+
+
+//--------------------------------------add quotation routes
+Route::get('/addQuotation', [AddQuotationController::class, 'viewQuotation'])
+    ->name('viewQuotation');

@@ -46,7 +46,7 @@
                     </a>
                 </li>
                 <li class="nav-item mb-1">
-                    <a href="#">
+                    <a href="{{route('viewQuotation')}}">
                         <i class="fa-regular fa-bookmark"></i>
                         Add Quotation
                     </a>
@@ -54,7 +54,7 @@
             @endif
             <li class="nav-item mb-1">
                 <a href="{{route('logout')}}">
-                    <i class="fa-regular fa-bookmark"></i>
+                    <i class="fa-regular fa-check"></i>
                     Logout
                 </a>
             </li>

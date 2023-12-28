@@ -18,14 +18,14 @@
                 <tbody>
                 @foreach($customerUsers as $data)
                     <tr>
-                        <th scope="row">{{$data->name}}</th>
+                        <td scope="row">{{$data->name}}</td>
                         <td>{{$data->contactno}}</td>
                         <td>{{$data->prescription->note}}</td>
                         <td>{{$data->prescription->delivery_address}}</td>
                         <td>{{$data->prescription->delivery_date}}</td>
                         <td>
                             @if($data->prescription->is_quotation_create === 0)
-                                <button type="button" class="btn btn-primary btn-sm">Create</button>
+                                <a href="{{route('viewQuotation')}}" class="btn btn-success btn-sm">Create</a>
                             @else
                                 <span class="badge badge-pill badge-dark">Already Created</span>
                             @endif
