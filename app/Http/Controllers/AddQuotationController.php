@@ -9,15 +9,19 @@ use Illuminate\Http\Request;
 
 class AddQuotationController extends Controller {
     function addQuotation(Prescription $prescription) {
-//        view('addQuotation',compact('prescription'));
-        $input = [
-            'prescription_id' => $prescription->id,
-            'quotation_create_date' => now()->toDateString(),
-            'is_send_quotation' => 0,
-            'is_accept_quotation' => 0,
-        ];
-        Quotation::create($input);
-        return view('addQuotation',compact('prescription'));
+        $existingQuotation = Quotation::where('prescription_id', $prescription->id)->first();
+        if ($existingQuotation) {
+            return view('addQuotation', compact('prescription'));
+        } else {
+            $input = [
+                'prescription_id' => $prescription->id,
+                'quotation_create_date' => now()->toDateString(),
+                'is_send_quotation' => 0,
+                'is_accept_quotation' => 0,
+            ];
+            Quotation::create($input);
+            return view('addQuotation', compact('prescription'));
+        }
     }
 
 //    public function addDrug(Request $request, Quotation $quotation) {
