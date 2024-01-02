@@ -60,8 +60,12 @@ Route::get('/prescriptionSummary',
 
 
 //--------------------------------------add quotation routes
-Route::post('/addQuotation/{prescription}', [AddQuotationController::class, 'addQuotation'])
+
+Route::post('/addQuotation/{prescription_id}', [AddQuotationController::class, 'addQuotation'])
     ->name('addQuotation');
 
-//Route::post('/addQuotation/{quotation}', [AddQuotationController::class, 'addDrug'])
-//    ->name('addDrug');
+Route::get('/addQuotation/{prescription_id}', [AddQuotationController::class, 'viewQuotation'])
+    ->name('viewQuotation');
+
+Route::post('/addDrug', [AddQuotationController::class, 'addDrug'])
+    ->name('addDrug');

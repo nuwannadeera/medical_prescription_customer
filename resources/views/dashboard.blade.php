@@ -54,7 +54,7 @@
             @endif
             <li class="nav-item mb-1">
                 <a href="{{route('logout')}}">
-                    <i class="fa-regular fa-check"></i>
+                    <i class="fa fa-sign-out"></i>
                     Logout
                 </a>
             </li>

@@ -6,8 +6,16 @@
             <table class="mt5" style="width: 100%">
                 <tbody>
                 <tr>
-                    {{--<form action="{{route('addDrug',$quotation->id)}}" method="POST">--}}
-                        <form>
+                    <form action="{{route('addDrug')}}" method="POST">
+                        @csrf
+                        <td style="width: 20%;display: none">quo id
+                            <input type="text" class="form-control text-right" name="q_id" autocomplete="off"
+                                   value="{{$q_id}}"/>
+                        </td>
+                        <td style="width: 20%;display: none">pres id
+                            <input type="text" class="form-control text-right" name="pres_id" autocomplete="off"
+                                   value="{{$prescription_id}}"/>
+                        </td>
                         <td style="width: 20%">Drug
                             <input type="text" class="form-control text-right" name="drug" autocomplete="off"/>
                         </td>
@@ -18,9 +26,9 @@
                             <input type="text" class="form-control text-right" name="price" autocomplete="off"/>
                         </td>
                         <td style="width: 10%; padding-top: 18px; padding-left: 3px;">
-                            <a class="btn btn-primary btn-sm" style="color: white">ADD</a>
+                            <button type="submit" class="btn btn-primary btn-sm">ADD</button>
                         </td>
-                    {{--</form>--}}
+                    </form>
                 </tr>
                 </tbody>
             </table>
@@ -36,19 +44,21 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>sdfsdf</td>
-                        <td>12</td>
-                        <td>456</td>
-                        <td>
-                            <button class="btn btn-primary" type="submit" value="EDIT">
-                                <span class="fa fa-edit"></span>
-                            </button>
-                            <button class="btn btn-primary" type="submit" value="DELETE">
-                                <span class="fa fa-remove"></span>
-                            </button>
-                        </td>
-                    </tr>
+                    @foreach($drugList as $data)
+                        <tr>
+                            <td>{{$data->drug}}</td>
+                            <td>{{$data->qty}}</td>
+                            <td>{{$data->price}}</td>
+                            <td>
+                                <a href="#" class="btn btn-primary">
+                                    <span class="fa fa-edit"></span>
+                                </a>
+                                <a href="#" class="btn btn-primary">
+                                    <span class="fa fa-remove"></span>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>
