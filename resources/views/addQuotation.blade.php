@@ -6,7 +6,9 @@
             <table class="mt5" style="width: 100%">
                 <tbody>
                 <tr>
-                    <form action="{{route('addDrug')}}" method="POST">
+                    <form
+                        action="{{$existingDrug->drug !== '' ? route('updateDrug', ['drug' => $existingDrug->id]) : route('addDrug')}}"
+                        method="POST">
                         @csrf
                         <td style="width: 20%;display: none">quo id
                             <input type="text" class="form-control text-right" name="q_id" autocomplete="off"

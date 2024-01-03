@@ -76,3 +76,6 @@ Route::post('/addDrug', [AddQuotationController::class, 'addDrug'])
 
 Route::get('/edit_drug/{drug}', [AddQuotationController::class, 'editDrug'])
     ->name('editDrug');
+
+Route::post('/edit_drug/{drug}', [AddQuotationController::class, 'updateDrug'])
+    ->name('updateDrug');

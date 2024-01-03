@@ -64,4 +64,10 @@ class AddQuotationController extends Controller {
         return view('addQuotation', ['prescription_id' => $prescription_id], compact('q_id', 'prescription_id'))
             ->with('drugList', $drugList)->with('existingDrug', $existingDrug);
     }
+
+    public function updateDrug(Request $request, Drug $drug) {
+        $input = $request->all();
+        $drug->update($input);
+        return redirect()->route('viewQuotation', ['prescription_id' => $request->pres_id]);
+    }
 }
