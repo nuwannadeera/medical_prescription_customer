@@ -59,7 +59,7 @@ Route::get('/prescriptionSummary',
     ->name('getAllPrescriptions');
 
 
-//--------------------------------------add quotation routes
+//--------------------------------------Quotation routes
 
 Route::post('/addQuotation/{prescription_id}', [AddQuotationController::class, 'addQuotation'])
     ->name('addQuotation');
@@ -67,5 +67,12 @@ Route::post('/addQuotation/{prescription_id}', [AddQuotationController::class, '
 Route::get('/addQuotation/{prescription_id}', [AddQuotationController::class, 'viewQuotation'])
     ->name('viewQuotation');
 
+
+
+//--------------------------------------Drug routes
+
 Route::post('/addDrug', [AddQuotationController::class, 'addDrug'])
     ->name('addDrug');
+
+Route::get('/edit_drug/{drug}', [AddQuotationController::class, 'editDrug'])
+    ->name('editDrug');

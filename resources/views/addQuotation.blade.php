@@ -17,16 +17,23 @@
                                    value="{{$prescription_id}}"/>
                         </td>
                         <td style="width: 20%">Drug
-                            <input type="text" class="form-control text-right" name="drug" autocomplete="off"/>
+                            <input type="text" class="form-control text-right" name="drug" autocomplete="off"
+                                   value="{{ $existingDrug->drug }}"/>
                         </td>
                         <td style="width: 15%">Qty
-                            <input type="text" class="form-control text-right" name="qty" autocomplete="off"/>
+                            <input type="text" class="form-control text-right" name="qty" autocomplete="off"
+                                   value="{{ $existingDrug->qty }}"/>
                         </td>
                         <td style="width: 15%">Price
-                            <input type="text" class="form-control text-right" name="price" autocomplete="off"/>
+                            <input type="text" class="form-control text-right" name="price" autocomplete="off"
+                                   value="{{ $existingDrug->price }}"/>
                         </td>
                         <td style="width: 10%; padding-top: 18px; padding-left: 3px;">
-                            <button type="submit" class="btn btn-primary btn-sm">ADD</button>
+                            @if($existingDrug->drug !== '')
+                                <button type="submit" class="btn btn-primary btn-sm">UPDATE</button>
+                            @else
+                                <button type="submit" class="btn btn-primary btn-sm">ADD</button>
+                            @endif
                         </td>
                     </form>
                 </tr>
@@ -50,7 +57,7 @@
                             <td>{{$data->qty}}</td>
                             <td>{{$data->price}}</td>
                             <td>
-                                <a href="#" class="btn btn-primary">
+                                <a href="{{route('editDrug',$data->id)}}" class="btn btn-primary">
                                     <span class="fa fa-edit"></span>
                                 </a>
                                 <a href="#" class="btn btn-primary">
