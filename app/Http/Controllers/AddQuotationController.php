@@ -70,4 +70,11 @@ class AddQuotationController extends Controller {
         $drug->update($input);
         return redirect()->route('viewQuotation', ['prescription_id' => $request->pres_id]);
     }
+
+    public function deleteDrug(Drug $drug) {
+        $quotation = Quotation::where('id', $drug->quotation_id)->first();
+        $prescription_id = $quotation->prescription_id;
+        $drug->delete();
+        return redirect()->route('viewQuotation', ['prescription_id' => $prescription_id]);
+    }
 }

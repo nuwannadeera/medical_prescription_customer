@@ -62,7 +62,7 @@
                                 <a href="{{route('editDrug',$data->id)}}" class="btn btn-primary">
                                     <span class="fa fa-edit"></span>
                                 </a>
-                                <a href="#" class="btn btn-primary">
+                                <a href="{{route('deleteDrug',$data->id)}}" class="btn btn-primary">
                                     <span class="fa fa-remove"></span>
                                 </a>
                             </td>
