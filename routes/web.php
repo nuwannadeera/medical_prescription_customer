@@ -61,17 +61,12 @@ Route::get('/prescriptionSummary',
 
 //--------------------------------------Quotation routes
 
-Route::post('/addQuotation/{prescription_id}', [AddQuotationController::class, 'goToQuotation'])
-    ->name('goToQuotation');
-
-//Route::post('/addQuotation/{prescription_id}', [AddQuotationController::class, 'addQuotation'])
-//    ->name('addQuotation');
-
-Route::post('/addQuotation', [AddQuotationController::class, 'addNewQuotation'])
-    ->name('addNewQuotation');
+Route::post('/addQuotation/{prescription_id}', [AddQuotationController::class, 'addQuotation'])
+    ->name('addQuotation');
 
 Route::get('/addQuotation/{prescription_id}', [AddQuotationController::class, 'viewQuotation'])
     ->name('viewQuotation');
+
 
 
 //--------------------------------------Drug routes
@@ -87,6 +82,3 @@ Route::post('/edit_drug/{drug}', [AddQuotationController::class, 'updateDrug'])
 
 Route::get('/delete_drug/{drug}', [AddQuotationController::class, 'deleteDrug'])
     ->name('deleteDrug');
-
-Route::get('/clear_drug', [AddQuotationController::class, 'clearDrug'])
-    ->name('clearDrug');
