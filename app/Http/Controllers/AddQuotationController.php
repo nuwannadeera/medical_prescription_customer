@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Drug;
 use App\Quotation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AddQuotationController extends Controller {
 
@@ -35,10 +36,32 @@ class AddQuotationController extends Controller {
             ];
             $quotation = Quotation::create($input);
             $q_id = $quotation->id;
+            DB::table('prescriptions')
+                ->where('id', $prescription_id)
+                ->update(['is_quotation_create' => 1]);
             return view('addQuotation', ['prescription_id' => $prescription_id], compact('q_id', 'prescription_id'))
                 ->with('drugList', $drugList)->with('existingDrug', $existingDrug);
         }
     }
+
+    function sendQuotation($quotation_id) {
+        DB::table('quotations')
+            ->where('id', $quotation_id)
+            ->update(['is_send_quotation' => 1]);
+        return redirect()->route('getAllPrescriptions');
+    }
+
+    function deleteQuotation($quotation_id) {
+        $quotation = Quotation::where('id', $quotation_id)->first();
+        $prescription_id = $quotation->prescription_id;
+        DB::table('prescriptions')
+            ->where('id', $prescription_id)
+            ->update(['is_quotation_create' => 0]);
+        $quotation = Quotation::find($quotation_id);
+        $quotation->delete();
+        return redirect()->route('getAllPrescriptions');
+    }
+
 
     public function addDrug(Request $request) {
         $request->validate([
@@ -75,6 +98,13 @@ class AddQuotationController extends Controller {
         $quotation = Quotation::where('id', $drug->quotation_id)->first();
         $prescription_id = $quotation->prescription_id;
         $drug->delete();
+        return redirect()->route('viewQuotation', ['prescription_id' => $prescription_id]);
+    }
+
+    public function clearDrug($prescription_id, Drug $drug) {
+        $drug->drug = '';
+        $drug->qty = '';
+        $drug->price = '';
         return redirect()->route('viewQuotation', ['prescription_id' => $prescription_id]);
     }
 }

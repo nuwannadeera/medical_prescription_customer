@@ -67,6 +67,11 @@ Route::post('/addQuotation/{prescription_id}', [AddQuotationController::class, '
 Route::get('/addQuotation/{prescription_id}', [AddQuotationController::class, 'viewQuotation'])
     ->name('viewQuotation');
 
+Route::get('/deleteQuotation/{quotation_id}', [AddQuotationController::class, 'deleteQuotation'])
+    ->name('deleteQuotation');
+
+Route::get('/sendQuotation/{quotation_id}', [AddQuotationController::class, 'sendQuotation'])
+    ->name('sendQuotation');
 
 
 //--------------------------------------Drug routes

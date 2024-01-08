@@ -1,7 +1,7 @@
 @extends('dashboard')
 @section('title','Add Quotation')
 @section('dashboardContent')
-    <div class="box box-primary smart-scroll-y" style="height: calc(100vh - 176px);width: 1115px">
+    <div class="box box-primary smart-scroll-y" style="height: calc(100vh - 176px);width: 1135px">
         <div class="box-body">
             <table class="mt5" style="width: 100%">
                 <tbody>
@@ -35,6 +35,9 @@
                                 <button type="submit" class="btn btn-primary btn-sm">UPDATE</button>
                             @else
                                 <button type="submit" class="btn btn-primary btn-sm">ADD</button>
+                                {{--<a href="{{route('clearDrug', ['prescription_id' => $prescription_id])}}" class="btn btn-primary btn-sm">--}}
+                                    {{--CLEAR--}}
+                                {{--</a>--}}
                             @endif
                         </td>
                     </form>
@@ -73,8 +76,8 @@
             </div>
         </div>
         <div class="box-footer">
-            <input type="submit" class="btn btn-primary" value="ADD QUOTATION"/>
-            <input type="submit" class="btn btn-primary" value="CLEAR"/>
+            <a href="{{route('sendQuotation',['quotation_id' => $q_id])}}" class="btn btn-primary">SEND QUOTATION</a>
+            <a href="{{route('deleteQuotation',['quotation_id' => $q_id])}}" class="btn btn-dark">DELETE QUOTATION</a>
         </div>
     </div>
 @endsection
