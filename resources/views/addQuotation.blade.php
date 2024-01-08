@@ -7,7 +7,7 @@
                 <tbody>
                 <tr>
                     <form
-                        action="{{$existingDrug->drug !== '' ? route('updateDrug', ['drug' => $existingDrug->id]) : route('addDrug')}}"
+                        action="{{$existingDrug->drug !== '' ? route('updateDrug', ['drug' => $existingDrug->id]) : route('addNewQuotation')}}"
                         method="POST">
                         @csrf
                         <td style="width: 20%;display: none">quo id
@@ -34,8 +34,11 @@
                             @if($existingDrug->drug !== '')
                                 <button type="submit" class="btn btn-primary btn-sm">UPDATE</button>
                             @else
-                                <button type="submit" class="btn btn-primary btn-sm">ADD</button>
+                                <button type="submit" class="btn btn-primary btn-sm">Add Quotation</button>
                             @endif
+                            <a href="{{route('clearDrug')}}" class="btn btn-primary btn-sm">
+                                Clear
+                            </a>
                         </td>
                     </form>
                 </tr>
@@ -72,9 +75,9 @@
                 </table>
             </div>
         </div>
-        <div class="box-footer">
-            <input type="submit" class="btn btn-primary" value="ADD QUOTATION"/>
-            <input type="submit" class="btn btn-primary" value="CLEAR"/>
-        </div>
+        {{--<div class="box-footer">--}}
+        {{--<input type="submit" class="btn btn-primary" value="ADD QUOTATION"/>--}}
+        {{--<input type="submit" class="btn btn-primary" value="CLEAR"/>--}}
+        {{--</div>--}}
     </div>
 @endsection
