@@ -5,6 +5,8 @@ use App\Http\Controllers\AuthManagerController;
 use App\Http\Controllers\AddPrescriptionController;
 use App\Http\Controllers\PrescriptionSummaryController;
 use App\Http\Controllers\AddQuotationController;
+use App\Http\Controllers\QuotationSummaryController;
+use App\Http\Controllers\viewQuotationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +43,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
+
 //--------------------------------------add prescription routes
 
 Route::get('/prescription', [AddPrescriptionController::class, 'prescription'])
@@ -50,13 +53,14 @@ Route::post('/add_prescription', [AddPrescriptionController::class, 'savePrescri
     ->name('savePrescription');
 
 
+
 //--------------------------------------prescription summary routes
 Route::get('/prescriptionSummary', [PrescriptionSummaryController::class, 'viewPrescriptionSummary'])
     ->name('viewPrescriptionSummary');
 
-Route::get('/prescriptionSummary',
-    [PrescriptionSummaryController::class, 'getAllPrescriptions'])
+Route::get('/prescriptionSummary', [PrescriptionSummaryController::class, 'getAllPrescriptions'])
     ->name('getAllPrescriptions');
+
 
 
 //--------------------------------------Quotation routes
@@ -74,6 +78,7 @@ Route::get('/sendQuotation/{quotation_id}', [AddQuotationController::class, 'sen
     ->name('sendQuotation');
 
 
+
 //--------------------------------------Drug routes
 
 Route::post('/addDrug', [AddQuotationController::class, 'addDrug'])
@@ -87,3 +92,24 @@ Route::post('/edit_drug/{drug}', [AddQuotationController::class, 'updateDrug'])
 
 Route::get('/delete_drug/{drug}', [AddQuotationController::class, 'deleteDrug'])
     ->name('deleteDrug');
+
+
+
+//--------------------------------------Customer Quotation Summary Routes
+
+Route::get('/quotationSummary',
+    [QuotationSummaryController::class, 'getAllCustomerQuotations'])
+    ->name('getAllCustomerQuotations');
+
+
+//---------------------------------------customer view quotation Routes
+
+Route::get('/viewCustomerQuotation/{prescription_id}',
+    [viewQuotationController::class, 'viewCustomerQuotation'])
+    ->name('viewCustomerQuotation');
+
+Route::get('/acceptQuotation/{quotation_id}', [viewQuotationController::class, 'acceptQuotation'])
+    ->name('acceptQuotation');
+
+Route::get('/rejectQuotation/{quotation_id}', [viewQuotationController::class, 'rejectQuotation'])
+    ->name('rejectQuotation');

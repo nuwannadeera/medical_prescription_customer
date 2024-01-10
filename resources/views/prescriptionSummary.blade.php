@@ -18,33 +18,33 @@
                 <tbody>
                 @foreach($customerUsers as $data)
                     <tr>
-                        <form action="{{route('addQuotation',$data->prescription->id)}}" method="POST">
+                        <form action="{{route('addQuotation',$data->id)}}" method="POST">
                             @csrf
                             <td scope="row">{{$data->name}}</td>
                             <td>{{$data->contactno}}</td>
-                            <td>{{$data->prescription->note}}</td>
-                            <td>{{$data->prescription->delivery_address}}</td>
-                            <td>{{$data->prescription->delivery_date}}</td>
+                            <td>{{$data->note}}</td>
+                            <td>{{$data->delivery_address}}</td>
+                            <td>{{$data->delivery_date}}</td>
                             <td>
-                                @if($data->prescription->is_quotation_create === 0)
+                                @if($data->is_quotation_create === 0)
                                     <button type="submit" class="btn btn-success btn-sm">Create</button>
                                 @else
                                     <span class="badge badge-pill badge-dark">Already Created</span>
-                                    <a href="{{route('viewQuotation',$data->prescription->id)}}" class="btn btn-primary btn-sm">
+                                    <a href="{{route('viewQuotation',$data->id)}}" class="btn btn-primary btn-sm">
                                         View
                                     </a>
                                 @endif
                             </td>
                             <td>
-                                @if($data->prescription->is_quotation_create === 0)
+                                @if($data->is_quotation_create === 0)
                                     <span class="badge badge-pill badge-dark">Quotation Not Created</span>
-                                @elseif($data->prescription->is_quotation_create === 1)
+                                @elseif($data->is_quotation_create === 1)
                                     <span class="badge badge-pill badge-success">Quotation Created</span>
-                                @if($data->prescription->quotation->is_send_quotation === 1)
+                                @if($data->is_send_quotation === 1 && $data->is_accept_quotation === 0)
                                     <span class="badge badge-pill badge-success">Sent to Customer</span>
-                                @elseif($data->prescription->quotation->is_accept_quotation === 1)
+                                @elseif($data->is_accept_quotation === 1 && $data->is_send_quotation === 1)
                                     <span class="badge badge-pill badge-primary">Accepted</span>
-                                @elseif($data->prescription->quotation->is_accept_quotation === 0 && $data->prescription->quotation->is_send_quotation === 1)
+                                @elseif($data->is_accept_quotation === 2 && $data->is_send_quotation === 1)
                                     <span class="badge badge-pill badge-danger">Rejected</span>
                                 @endif
                                 @endif
